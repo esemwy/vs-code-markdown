@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v0.1.0)'
+        required: true
+        type: string
 
 jobs:
   release:
@@ -26,6 +32,8 @@ jobs:
         run: npx @vscode/vsce package
 
       - name: Create GitHub release
-        run: gh release create "${{ github.ref_name }}" *.vsix --title "${{ github.ref_name }}" --generate-notes
+        run: |
+          VERSION="${{ inputs.version || github.ref_name }}"
+          gh release create "$VERSION" *.vsix --title "$VERSION" --generate-notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
