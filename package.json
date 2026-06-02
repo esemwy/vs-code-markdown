@@ -1,0 +1,69 @@
+{
+    "name": "vs-code-markdown",
+    "displayName": "Markdown Shortcuts",
+    "description": "Keyboard shortcuts for common Markdown editing tasks",
+    "version": "0.1.0",
+    "publisher": "esemwy",
+    "engines": {
+        "vscode": "^1.85.0"
+    },
+    "categories": ["Other"],
+    "activationEvents": ["onLanguage:markdown"],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "vs-code-markdown.headerPromote",
+                "title": "Markdown: Promote Header (fewer #s)"
+            },
+            {
+                "command": "vs-code-markdown.headerDemote",
+                "title": "Markdown: Demote Header (more #s)"
+            },
+            {
+                "command": "vs-code-markdown.toggleBulletList",
+                "title": "Markdown: Toggle Bullet List"
+            },
+            {
+                "command": "vs-code-markdown.toggleNumberedList",
+                "title": "Markdown: Toggle Numbered List"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "vs-code-markdown.headerPromote",
+                "key": "ctrl+shift+[",
+                "mac": "cmd+shift+[",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+            },
+            {
+                "command": "vs-code-markdown.headerDemote",
+                "key": "ctrl+shift+]",
+                "mac": "cmd+shift+]",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+            },
+            {
+                "command": "vs-code-markdown.toggleBulletList",
+                "key": "ctrl+shift+8",
+                "mac": "cmd+shift+8",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+            },
+            {
+                "command": "vs-code-markdown.toggleNumberedList",
+                "key": "ctrl+shift+7",
+                "mac": "cmd+shift+7",
+                "when": "editorTextFocus && !editorReadonly && editorLangId == markdown"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "@types/vscode": "^1.85.0",
+        "typescript": "^5.3.0"
+    }
+}
